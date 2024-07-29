@@ -34,16 +34,21 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'review', 'review_id', 'text', 'created_at', 'updated_at')
 
 
-class GameSerializer(serializers.HyperlinkedModelSerializer):
-    reviews = ReviewSerializer(
-        many=True,
-        read_only=True
-    )
+# class GameSerializer(serializers.HyperlinkedModelSerializer):
+#     reviews = ReviewSerializer(
+#         many=True,
+#         read_only=True
+#     )
 
-    game_url = serializers.HyperlinkedIdentityField(
-        view_name='game_detail'
-    )
+#     game_url = serializers.HyperlinkedIdentityField(
+#         view_name='game_detail'
+#     )
 
+#     class Meta:
+#         model = Game
+#         fields = ('id', 'game_url', 'title', 'description', 'release_date', 'reviews')
+
+class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        fields = ('id', 'game_url', 'title', 'description', 'release_date', 'reviews')
+        fields = '__all__'
